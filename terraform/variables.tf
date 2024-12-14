@@ -45,3 +45,12 @@ variable "db_password" {
   type        = string
   sensitive   = true 
 }
+
+# Nome da chave para acessar a EC2
+variable "ssh_key_name" {
+  description = "Nome Chaves SSH"
+  type = string
+  
+
+}
+
