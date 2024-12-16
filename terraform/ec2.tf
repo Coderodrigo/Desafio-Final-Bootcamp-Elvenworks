@@ -11,7 +11,7 @@ resource "aws_instance" "wordpress" {
  connection {
     type        = "ssh"
     user        = "ubuntu"  # Ou o usuário padrão da sua AMI
-    private_key = file("/home/rodrigo/.ssh/id_ed25519")
+    private_key = file("/home/rodrigo/.ssh/id__rsa")
     host        = self.public_ip
 
  }
