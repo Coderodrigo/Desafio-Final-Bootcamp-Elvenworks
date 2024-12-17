@@ -33,7 +33,7 @@ variable "private_subnet_2_cidr" {
 variable "instance_type" {
   description = "Tipo da instância EC2"
   type        = string
-  default     = "t3.micro"  # Tipo de instância, altere conforme necessário
+  default     = "t3.micro"  
 }
 
 variable "ami_id" {
