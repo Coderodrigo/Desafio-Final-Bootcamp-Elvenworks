@@ -1,19 +1,19 @@
+# EC2 para o Wordpress
 resource "aws_instance" "wordpress" {
-  count         = 2  # Criando 2 instâncias EC2
-  ami           = var.ami_id  # Usando a variável ami_id
-  instance_type = var.instance_type  # Usando a variável instance_type
-  key_name      = aws_key_pair.ssh_key.key_name
+  ami                         = "ami-036841078a4b68e14" 
+  instance_type               = "t3.micro"
+  subnet_id                   = aws_subnet.public_1.id
+  associate_public_ip_address = true
 
-  tags = {
-    Name = "wordpress-instance-${count.index}"
-  }
-
- connection {
-    type        = "ssh"
-    user        = "ubuntu"  # Ou o usuário padrão da sua AMI
-    private_key = file("/home/rodrigo/.ssh/id__rsa")
-    host        = self.public_ip
-
- }
-
+  tags = { Name = "wordpress-instance" }
 }
+
+#EC2 para o monitoramento Grafana + Prometheus
+resource "aws_instance" "monitoring" {
+  ami           = "ami-036841078a4b68e14" 
+  instance_type = "t3.micro"
+  subnet_id     = aws_subnet.private_1.id
+
+  tags = { Name = "monitoring-instance" }
+}
+

@@ -1,5 +1,4 @@
-# rds.tf
-
+#Criação Banco de dados RDS
 resource "aws_db_instance" "wordpress_db" {
   allocated_storage    = 20
   storage_type         = "gp2"

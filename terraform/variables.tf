@@ -4,22 +4,30 @@ variable "region" {
   default     = "us-east-2"
 }
 
-variable "profile" {
-  description = "Perfil AWS para autenticação"
-  type        = string
-  default     = "Rodrigo-Admin"
-}
-
 variable "vpc_cidr" {
   description = "CIDR da VPC"
   type        = string
   default     = "10.0.0.0/16"
 }
 
-variable "subnet_cidrs" {
-  description = "CIDRs das sub-redes públicas e privadas"
-  type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24", "10.0.4.0/24"]
+variable "public_subnet_1_cidr" {
+  description = "CIDR da Subnet Pública 1"
+  default = "10.0.1.0/24"
+}
+
+variable "public_subnet_2_cidr" {
+  description = "CIDR da Subnet Pública 2"
+  default = "10.0.2.0/24"
+}
+
+variable "private_subnet_1_cidr" {
+  description = "CIDR da Subnet Privada 1"
+  default = "10.0.3.0/24"
+}
+
+variable "private_subnet_2_cidr" {
+  description = "CIDR da Subnet Privada 1"
+  default = "10.0.4.0/24"
 }
 
 variable "instance_type" {
@@ -37,7 +45,7 @@ variable "ami_id" {
 variable "db_username" {
   description = "Nome de usuário para o banco de dados RDS"
   type        = string
-  default     = "admin"
+  default     = "adminRO"
 }
 
 variable "db_password" {
@@ -46,11 +54,8 @@ variable "db_password" {
   sensitive   = true 
 }
 
-# Nome da chave para acessar a EC2
 variable "ssh_key_name" {
   description = "Nome Chaves SSH"
   type = string
-  
-
 }
 
