@@ -21,8 +21,8 @@ resource "aws_instance" "wordpress" {
               sudo apt install -y ansible git
               # Baixar o playbook do GitHub
               cd /tmp
-              git clone https://github.com/seu-usuario/wordpress-playbook.git
-              cd wordpress-playbook
+              git clone https://github.com/Coderodrigo/Desafio-Final-Bootcamp-Elvenworks/blob/main/Ansible-Wordpress-php/wordpress.yml
+              cd wordpress-playbook 
               # Executar o playbook
               sudo ansible-playbook -i inventory wordpress.yml
               EOF
