@@ -1,0 +1,33 @@
+- name: Configurar WordPress em EC2
+  hosts: wordpress_server  # O grupo de servidores onde o playbook será executado.
+  become: true  # Garante que os comandos serão executados com privilégios de superusuário (sudo).
+  tasks:
+
+    # Atualizar pacotes e instalar dependências
+    - name: Atualizar pacotes
+      apt:
+        update_cache: yes  # Atualiza a lista de pacotes disponíveis para garantir que versões mais recentes sejam instaladas.
+      
+    - name: Instalar pacotes necessários
+      apt:
+        name: 
+          - nginx            # Servidor web para servir o WordPress.
+          - php-fpm          # PHP com suporte para processamento rápido.
+          - php-mysql        # Extensão PHP para comunicação com o banco de dados MySQL.
+          - unzip            # Utilitário para descompactar arquivos.
+          - wget             # Ferramenta para baixar arquivos da web.
+        state: present  # Garante que esses pacotes estejam instalados.
+
+    # Instalar e configurar MySQL
+    - name: Instalar MySQL
+      apt:
+        name: mariadb-server  # Alternativa popular ao MySQL, compatível com WordPress.
+        state: present  # Garante a instalação.
+
+    - name: Iniciar e habilitar MySQL
+      service:
+        name: mysql
+        state: started  # Garante que o serviço do banco de dados esteja rodando.
+        enabled: true   # Garante que o serviço inicie automaticamente no boot.
+
+    - name: Configurar banco de dados para Word
